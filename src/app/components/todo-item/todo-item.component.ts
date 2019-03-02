@@ -23,12 +23,12 @@ setClass(){
   return cssClass;
 }
 
-toggleTodo( t ){
+toggleTodo( t:Todo ){
 this.todoitem.completed = !t.completed;
 }
 
 deleteTodo(){
-
+alert('Not yet implemented!')
 }
 
 }
