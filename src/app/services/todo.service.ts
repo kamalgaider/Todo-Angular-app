@@ -20,11 +20,20 @@ export class TodoService {
 
   constructor(private http:HttpClient) { }
 
-  toggleCompleted(todo:Todo):Observable<any>{
+  toggleCompleted(todo:Todo) : Observable<any>{
     const url = `${this.dataURL}/${todo.id}`;
     return this.http.put(url, todo, httpOptions);
   }
 
+  deleteIt(todo:Todo): Observable<Todo>{
+    const url = `${this.dataURL}/${todo.id}`;
+    return this.http.delete<Todo>(url, httpOptions);
+  }
+
+  addTodo(todo: Todo): Observable<Todo>{
+    return this.http.post<Todo>(this.dataURL, todo, httpOptions);
+  }
+  
   getTodoList(): Observable<Todo[]>{
     return this.http.get<Todo[]>(`${this.dataURL}${this.limit}`);
   }

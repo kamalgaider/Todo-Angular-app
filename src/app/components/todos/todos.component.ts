@@ -21,4 +21,15 @@ export class TodosComponent implements OnInit {
   });
   }
 
+  deleteTodoItem(todo: Todo){
+    //delete on UI
+    this.todos = this.todos.filter(t => t.id !== todo.id);
+    //delete on server
+    this.srv.deleteIt(todo).subscribe();
+    }
+
+    addTodo(todo:Todo){
+      this.srv.addTodo(todo).subscribe(
+        todo=>{ this.todos.push(todo)});
+    }
 }

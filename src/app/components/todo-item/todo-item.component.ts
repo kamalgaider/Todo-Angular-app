@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
 import { TodoService } from '../../services/todo.service';
 
@@ -8,7 +8,8 @@ import { TodoService } from '../../services/todo.service';
   styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todoitem: Todo
+  @Input() todoitem: Todo;
+  @Output() deleteTodoItem : EventEmitter<Todo> = new EventEmitter();
 
   constructor(private srv:TodoService) { }
 
@@ -33,8 +34,9 @@ toggleTodo( t:Todo ){
     console.log(t));
 }
 
-deleteTodo(){
-alert('Not yet implemented!')
+deleteTodo(todo: Todo){
+//alert('Not yet implemented!')
+this.deleteTodoItem.emit(todo);
 }
 
 }
